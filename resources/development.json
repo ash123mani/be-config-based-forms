@@ -1,0 +1,13 @@
+{
+    "port": 5000,
+    "graphiql": true,
+    "mongo": {
+        "uri": "mongodb+srv://qalamela:qalamanch@cluster0.ovtwvnv.mongodb.net/?retryWrites=true&w=majority",
+        "options": {
+            "useCreateIndex": true,
+            "useFindAndModify": true,
+            "useNewUrlParser": true,
+            "useUnifiedTopology": true
+        }
+    }
+}

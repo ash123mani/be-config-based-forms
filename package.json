@@ -1,0 +1,51 @@
+{
+  "name": "javascript-express-graphql-starter",
+  "version": "1.0.0",
+  "description": "JavaScript Express GraphQL Starter",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint",
+    "serve": "nodemon --exec babel-node src/index.js",
+    "build": "babel src --out-dir dist",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amoghmadan/JavaScript-Express-GraphQL-Starter.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Express",
+    "GraphQL",
+    "Starter"
+  ],
+  "author": "Amogh Madan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amoghmadan/JavaScript-Express-GraphQL-Starter/issues"
+  },
+  "homepage": "https://github.com/amoghmadan/JavaScript-Express-GraphQL-Starter#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "eslint": "^7.18.0",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "graphql": "^15.4.0",
+    "graphql-http": "^1.21.0",
+    "graphql-playground-middleware-express": "^1.7.23",
+    "helmet": "^4.4.1",
+    "i": "^0.3.7",
+    "mongoose": "^5.11.13",
+    "morgan": "^1.10.0",
+    "npm": "^9.8.1"
+  }
+}
