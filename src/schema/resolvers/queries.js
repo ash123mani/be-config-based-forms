@@ -1,5 +1,7 @@
-import { GraphQLObjectType } from 'graphql';
-import { pingType } from '../typeDefs'
+import { GraphQLObjectType, GraphQLList } from 'graphql';
+import { pingType, nodeType } from '../typeDefs'
+
+import { NodeModel } from '../../models'
 
 
   const RootQuery = new GraphQLObjectType({
@@ -11,6 +13,13 @@ import { pingType } from '../typeDefs'
                 return {
                     message: "PONG"
                 }
+            }
+        },
+        nodes: {
+            type: new GraphQLList(nodeType),
+            async resolve() {
+                const nodes = await NodeModel.find()
+                return nodes
             }
         }
     }

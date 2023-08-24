@@ -11,7 +11,8 @@ export const pingType = new GraphQLObjectType({
 export const nodeType = new GraphQLObjectType({
     name: 'Node',
     fields: () => ({
-        name: { type: GraphQLString },
+        displayName: { type: GraphQLString },
+        name: { type:GraphQLString },
         _id: { type: GraphQLID }
     })
 })

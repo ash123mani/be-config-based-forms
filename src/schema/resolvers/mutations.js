@@ -10,16 +10,20 @@ const Mutations = new GraphQLObjectType({
         addNode: {
             type: nodeType,
             args: {
-                name: { type: new GraphQLNonNull(GraphQLString) }
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                displayName: { type: new GraphQLNonNull(GraphQLString) },
             },
             async resolve(parent, args) {
-                const nameExists = await NodeModel.exists({ name: args.name });
 
-
-                if (nameExists) {
-                    return new BaseError('Name already exits', 500)
+                if (!args.name || !args.displayName) {
+                    return new BaseError('You have some  missing fields', 400)
                 }
 
+                const nameExists = await NodeModel.exists({ name: args.name });
+
+                if (nameExists) {
+                    return new BaseError('Node name already exits', 500)
+                }
                 if (!nameExists) {
                     const node = new NodeModel(args)
                     const newNode = await node.save()
