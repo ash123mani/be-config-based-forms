@@ -1,7 +1,7 @@
-import { PersonModel } from "./person.model";
 import { NodeModel } from "./node.model"
+import { FieldsModel } from "./fields.model";
 
 export {
-    PersonModel,
-    NodeModel
+    NodeModel,
+    FieldsModel
 };

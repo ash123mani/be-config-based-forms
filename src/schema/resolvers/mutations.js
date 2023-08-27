@@ -1,8 +1,8 @@
-import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from "graphql";
+import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLID } from "graphql";
 import BaseError from '../../utils/baseError'
 
-import { nodeType } from "../typeDefs";
-import { NodeModel } from '../../models'
+import { nodeType, basicInfoInputType, fieldsType } from "../typeDefs";
+import { NodeModel, FieldsModel } from '../../models'
 
 const Mutations = new GraphQLObjectType({
     name: 'Mutations',
@@ -30,6 +30,20 @@ const Mutations = new GraphQLObjectType({
                     return newNode
                 }
             }
+        },
+        addNodeField: {
+            type: fieldsType,
+            args: {
+                nodeId: { type: new GraphQLNonNull(GraphQLID) },
+                elementType: { type: new GraphQLNonNull(GraphQLString) },
+                basicInfo: { type: basicInfoInputType }
+            },
+            async resolve(parent, args) {
+                const fields = new FieldsModel(args)
+                const newFielsConfig = await fields.save()
+
+                return newFielsConfig
+            } 
         }
     }
 })

@@ -39,7 +39,7 @@
     "@babel/runtime": "^7.12.5",
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "graphql": "^15.4.0",
+    "graphql": "^16.8.0",
     "graphql-http": "^1.21.0",
     "graphql-playground-middleware-express": "^1.7.23",
     "helmet": "^4.4.1",
