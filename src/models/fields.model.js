@@ -7,6 +7,9 @@ const FieldsSchema = new Schema({
   basicInfo: {
     name: { type: String, required: true },
     apiIdentifier: { type: String, required: true }
+  },
+  validations: {
+    required: { type: Boolean }
   }
 })
 

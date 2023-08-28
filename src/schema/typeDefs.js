@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLInputObjectType, GraphQLString, GraphQLID } from 'graphql';
+import { GraphQLObjectType, GraphQLInputObjectType, GraphQLString, GraphQLID, GraphQLBoolean } from 'graphql';
 
 export const pingType = new GraphQLObjectType({
     name: 'Ping',
@@ -26,6 +26,20 @@ export const basicInfoInputType = new GraphQLInputObjectType({
     })
 })
 
+export const ValidationsInput = new GraphQLInputObjectType({
+    name: 'ValidationsInput',
+    fields: () => ({
+        required: { type: GraphQLBoolean },
+    })
+})
+
+export const ValidationsPayload = new GraphQLObjectType({
+    name: 'ValidationsPayload',
+    fields: () => ({
+        required: { type: GraphQLBoolean },
+    })
+})
+
 export const basicInfoPayload = new GraphQLObjectType({
     name: 'BasicInfoPayload',
     description: 'Input payload for creating user',
@@ -35,11 +49,13 @@ export const basicInfoPayload = new GraphQLObjectType({
     })
 })
 
-export const fieldsType = new GraphQLObjectType({
+export const Fields = new GraphQLObjectType({
     name: 'FieldsType',
     fields: () => ({
+        _id: { type: GraphQLID },
         nodeId: { type: GraphQLID },
         elementType: { type: GraphQLString },
-        basicInfo: { type: basicInfoPayload }
+        basicInfo: { type: basicInfoPayload },
+        validations: { type: ValidationsPayload }
     })
 })

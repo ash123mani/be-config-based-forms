@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLID } from "graphql";
 import BaseError from '../../utils/baseError'
 
-import { nodeType, basicInfoInputType, fieldsType } from "../typeDefs";
+import { nodeType, basicInfoInputType, Fields, ValidationsInput } from "../typeDefs";
 import { NodeModel, FieldsModel } from '../../models'
 
 const Mutations = new GraphQLObjectType({
@@ -11,11 +11,11 @@ const Mutations = new GraphQLObjectType({
             type: nodeType,
             args: {
                 name: { type: new GraphQLNonNull(GraphQLString) },
-                displayName: { type: new GraphQLNonNull(GraphQLString) },
+                apiIdentifier: { type: new GraphQLNonNull(GraphQLString) },
             },
             async resolve(parent, args) {
 
-                if (!args.name || !args.displayName) {
+                if (!args.name || !args.apiIdentifier) {
                     return new BaseError('You have some  missing fields', 400)
                 }
 
@@ -32,11 +32,11 @@ const Mutations = new GraphQLObjectType({
             }
         },
         addNodeField: {
-            type: fieldsType,
+            type: Fields,
             args: {
                 nodeId: { type: new GraphQLNonNull(GraphQLID) },
                 elementType: { type: new GraphQLNonNull(GraphQLString) },
-                basicInfo: { type: basicInfoInputType }
+                basicInfo: { type: basicInfoInputType },
             },
             async resolve(parent, args) {
                 const fields = new FieldsModel(args)
@@ -44,6 +44,20 @@ const Mutations = new GraphQLObjectType({
 
                 return newFielsConfig
             } 
+        },
+        updateNodeField: {
+            type: Fields,
+            args: {
+                _id: { type: new GraphQLNonNull(GraphQLID)  },
+                basicInfo: { type: basicInfoInputType },
+                validations: { type: ValidationsInput }
+            },
+            async resolve(parent, args) {
+                const update = await FieldsModel.findByIdAndUpdate(args._id, args, { new: true, useFindAndModify: false })
+                console.log('update', update)
+
+                return update
+            }  
         }
     }
 })
