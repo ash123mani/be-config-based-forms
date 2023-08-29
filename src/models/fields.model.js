@@ -1,5 +1,4 @@
-import { model, Schema } from "mongoose";
-
+import { model, Schema } from 'mongoose';
 
 const FieldsSchema = new Schema({
   nodeId: { type: Schema.Types.ObjectId, required: true },
@@ -9,9 +8,9 @@ const FieldsSchema = new Schema({
     apiIdentifier: { type: String, required: true }
   },
   validations: {
-    required: { type: Boolean }
+    required: { type: Boolean },
+    errorMsg: { type: String }
   }
-})
+});
 
-export const FieldsModel = model("Fields", FieldsSchema);
-
+export const FieldsModel = model('Fields', FieldsSchema);
