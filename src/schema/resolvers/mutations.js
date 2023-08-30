@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLID } from 'graphql';
+import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLID, GraphQLList } from 'graphql';
 import BaseError from '../../utils/baseError';
 
 import { nodeType, basicInfoInputType, Fields, ValidationsInput } from '../typeDefs';
@@ -35,6 +35,7 @@ const Mutations = new GraphQLObjectType({
       args: {
         nodeId: { type: new GraphQLNonNull(GraphQLID) },
         elementType: { type: new GraphQLNonNull(GraphQLString) },
+        dataFields: { type: new GraphQLList(GraphQLString) },
         basicInfo: { type: basicInfoInputType }
       },
       async resolve(parent, args) {

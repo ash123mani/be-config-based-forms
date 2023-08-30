@@ -5,11 +5,18 @@ const FieldsSchema = new Schema({
   elementType: { type: String, required: true },
   basicInfo: {
     name: { type: String, required: true },
-    apiIdentifier: { type: String, required: true }
+    apiIdentifier: { type: String, required: true },
+    dataFields: { type: [Schema.Types.Mixed] }
   },
   validations: {
     required: { type: Boolean },
-    errorMsg: { type: String }
+    errorMsg: { type: String },
+    pattern: {
+      value: { type: Boolean },
+      pattern: { type: String },
+      flags: { type: String },
+      errorMsg: { type: String }
+    }
   }
 });
 

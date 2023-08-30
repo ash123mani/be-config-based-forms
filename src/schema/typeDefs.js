@@ -1,4 +1,11 @@
-import { GraphQLObjectType, GraphQLInputObjectType, GraphQLString, GraphQLID, GraphQLBoolean } from 'graphql';
+import {
+  GraphQLObjectType,
+  GraphQLInputObjectType,
+  GraphQLString,
+  GraphQLID,
+  GraphQLBoolean,
+  GraphQLList
+} from 'graphql';
 
 export const pingType = new GraphQLObjectType({
   name: 'Ping',
@@ -21,23 +28,8 @@ export const basicInfoInputType = new GraphQLInputObjectType({
   description: 'Input payload for creating user',
   fields: () => ({
     name: { type: GraphQLString },
-    apiIdentifier: { type: GraphQLString }
-  })
-});
-
-export const ValidationsInput = new GraphQLInputObjectType({
-  name: 'ValidationsInput',
-  fields: () => ({
-    required: { type: GraphQLBoolean },
-    errorMsg: { type: GraphQLString }
-  })
-});
-
-export const ValidationsPayload = new GraphQLObjectType({
-  name: 'ValidationsPayload',
-  fields: () => ({
-    required: { type: GraphQLBoolean },
-    errorMsg: { type: GraphQLString }
+    apiIdentifier: { type: GraphQLString },
+    dataFields: { type: new GraphQLList(GraphQLString) }
   })
 });
 
@@ -46,7 +38,46 @@ export const basicInfoPayload = new GraphQLObjectType({
   description: 'Input payload for creating user',
   fields: () => ({
     name: { type: GraphQLString },
-    apiIdentifier: { type: GraphQLString }
+    apiIdentifier: { type: GraphQLString },
+    dataFields: { type: new GraphQLList(GraphQLString) }
+  })
+});
+
+export const ValidationsInput = new GraphQLInputObjectType({
+  name: 'ValidationsInput',
+  fields: () => ({
+    required: { type: GraphQLBoolean },
+    errorMsg: { type: GraphQLString },
+    pattern: { type: PatternsInput }
+  })
+});
+
+export const PatternsInput = new GraphQLInputObjectType({
+  name: 'PatternsInput',
+  fields: () => ({
+    value: { type: GraphQLBoolean },
+    errorMsg: { type: GraphQLString },
+    pattern: { type: GraphQLString },
+    flags: { type: GraphQLString }
+  })
+});
+
+export const PatternsPayload = new GraphQLObjectType({
+  name: 'PatternsPayload',
+  fields: () => ({
+    value: { type: GraphQLBoolean },
+    errorMsg: { type: GraphQLString },
+    pattern: { type: GraphQLString },
+    flags: { type: GraphQLString }
+  })
+});
+
+export const ValidationsPayload = new GraphQLObjectType({
+  name: 'ValidationsPayload',
+  fields: () => ({
+    required: { type: GraphQLBoolean },
+    errorMsg: { type: GraphQLString },
+    pattern: { type: PatternsPayload }
   })
 });
 
