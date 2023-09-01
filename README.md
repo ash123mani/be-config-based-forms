@@ -1,5 +1,4 @@
 # BE for config based forms
-Kick-starter to your GraphQL application.
 
 ## Setup
     npm i
